@@ -1,6 +1,8 @@
 # full-stack
 
-A "standard" yet modern full-stack TypeScript web-application template using React/Vite on the frontend and Express on the backend, bundled with Turborepo.
+Application that allows users to keep track of plants and watering schedules. To view current plants, visit the Garden page. To add new plants, visit the Shop page. To create watering schedules, visit the Calendar page. 
+
+Built using a "standard" yet modern full-stack TypeScript web-application template using React/Vite on the frontend and Express on the backend, bundled with Turborepo.
 
 ## Using this example
 
