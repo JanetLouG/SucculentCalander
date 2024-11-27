@@ -1,0 +1,16 @@
+{
+  "Plants":   [
+     { "name": "Rose", 
+       "amount": 22,  
+       "watering_frequency": "Every day"
+     },
+     { "name": "Cactus", 
+       "amount": 23, 
+       "watering_frequency": "once a week" 
+     },
+     { "name": "Rhipsalidopsis gaertneri", "amount": 25, 
+       "watering_frequency": "every day" 
+     }
+
+    ]
+}

@@ -1,0 +1,121 @@
+import './Garden.css';
+import '@blueprintjs/core/lib/css/blueprint.css';
+import { useEffect, useState } from "react"
+import { Button, Toaster, EditableText, Position } from "@blueprintjs/core"
+
+const GardenToaster = Toaster.create({
+    position: Position.TOP,
+  })
+
+ const filteredItems = items.filter((item: { name: string; }) => {
+    return item.name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+  
+export default function MyGarden() {
+
+    const [myplants, setMyplants] = useState([]);
+
+    useEffect(() => {
+        fetch("https://google.com/MyPlants")
+          .then((response) => response.json())
+          .then((json) => setMyplants(json));
+      }, []);
+
+
+    const [ Plants, setPlants] = useState( [
+        { name: "Rose", amount: 20,   watering_frequency: "Every day" },
+        { name: "cactus", amount: 23, watering_frequency: "once a week" },
+        { name: "Rhipsalidopsis gaertneri", amount: 25, watering_frequency: "every day" },
+    ] );
+
+    // const deleteMyplants = (id: any) => {
+    //     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    //       method: "DELETE",
+    //     })
+    //       .then((response) => response.json())
+    //       .then(() => {
+    //         setMyplants((values) => {
+    //           return values.filter((item) => item.id !== id);
+    //         });
+    //         GardenToaster.show({
+    //           message: "User deleted successfully",
+    //           intent: "success",
+    //           timeout: 3000,
+    //         });
+    //       });
+    //   };
+
+
+
+    const handleInfo = () => {
+        // Handle button click event
+        console.log('Button info clicked!');
+      };
+    
+    // const handleDelete = (name: string) => {
+    //     // Handle button click event
+    //     //setPlants((values) => {values.filter((item) => item.name !== name);});
+    //     //setPlants(Plants.filter((item) => item.name !== name));
+    //     console.log('Button delete clicked!' + name);
+    //   };
+
+    const handleDelete = () => {
+        // Handle button click event
+        console.log('Button delete clicked!');
+      };
+
+    const handleAdd = () => {
+        // Handle button click event
+        console.log('Button add clicked!');
+      };
+    
+
+
+      return (
+        <center>
+          <h2>Welcome to My Garden!</h2>
+          <div style={{ marginLeft:10, marginTop:10}} className="Garden">
+          <table >
+             <tbody>
+                <tr>
+                    <th>Plant Name</th>
+                    <th>amount</th>
+                    <th>Watering frequency</th>
+                </tr>
+            </tbody>
+            <tbody>           
+                    {Plants.map((val, key) => {
+                        return (
+                            <tr key={key}>
+                                <td>{val.name}</td>
+                                <td>{val.amount}</td>
+                                <td>{val.watering_frequency}</td>
+                                <td>
+                                   <Button intent="primary" onClick={handleInfo}>Info</Button>
+
+                                </td>
+                            </tr>                                               
+                    )} )}              
+            </tbody>
+            <tbody>
+                <tr>
+                    <th></th>
+                    <th>
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '5vh' }}>
+                            <Button intent="primary" style={{width:100, marginLeft:150}} onClick={handleAdd}>Add</Button>
+                        </div>
+                    </th>
+                    <th></th>
+                </tr>
+            </tbody>
+           </table>
+        </div>
+        </center>
+      );
+
+  }
+ 
+
+//export default Garden;
+
+

@@ -1,0 +1,98 @@
+import './Garden.css';
+import '@blueprintjs/core/lib/css/blueprint.css';
+import { useEffect, useState } from "react"
+import { Button, Toaster, EditableText, Position } from "@blueprintjs/core"
+
+const GardenToaster = Toaster.create({
+    position: Position.TOP,
+  })
+  
+export default function MyGarden() {
+
+    const [myplants, setMyplants] = useState([]);
+
+    useEffect(() => {
+        fetch("https://google.com/MyPlants")
+          .then((response) => response.json())
+          .then((json) => setMyplants(json));
+      }, []);
+
+    const Plants = [
+        { name: "Rose", amount: 20,   watering_frequency: "Every day" },
+        { name: "cactus", amount: 23, watering_frequency: "once a week" },
+        { name: "Rhipsalidopsis gaertneri", amount: 25, watering_frequency: "every day" },
+    ]
+
+    // const deleteMyplants = (id: any) => {
+    //     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    //       method: "DELETE",
+    //     })
+    //       .then((response) => response.json())
+    //       .then(() => {
+    //         setMyplants((values) => {
+    //           return values.filter((item) => item.id !== id);
+    //         });
+    //         GardenToaster.show({
+    //           message: "User deleted successfully",
+    //           intent: "success",
+    //           timeout: 3000,
+    //         });
+    //       });
+    //   };
+
+
+
+    const handleInfo = () => {
+        // Handle button click event
+        console.log('Button info clicked!');
+      };
+    
+    const handleDelete = () => {
+        // Handle button click event
+        console.log('Button delete clicked!');
+      };
+    const handleAdd = () => {
+        // Handle button click event
+        console.log('Button add clicked!');
+      };
+    
+
+
+      return (
+        <center>
+          <h2>Welcome to My Garden!</h2>
+          <div style={{ marginLeft:10, marginTop:10}} className="Garden">
+          <table>
+             <tr>
+                <th>Plant Name</th>
+                <th>amount</th>
+                <th>Watering frequency</th>
+             </tr>
+             <tr>
+             {Plants.map((val, key) => {
+                    return (
+                        <tr key={key}>
+                            <td>{val.name}</td>
+                            <td>{val.amount}</td>
+                            <td>{val.watering_frequency}</td>
+                            <td>
+                               <Button intent="primary" onClick={handleInfo}>Info</Button>
+                                &nbsp;
+                                <Button intent="danger" onClick={handleDelete}>Delete</Button>
+                            </td>
+                        </tr>    
+                                            
+                    )
+                } )}
+                </tr>
+                </table>
+        </div>
+        </center>
+      );
+
+  }
+ 
+
+//export default Garden;
+
+

@@ -1,0 +1,17 @@
+Project Idea - JanetLou Guan
+
+Succulent Calender
+Description: A website with a calender to keep track of succulents, (i.e. watering dates or other info). There will be three web pages - a homepage where you can see a list of your current plants, a calender page where you can note down watering dates for each plant and the calender will autofill subsequent watering dates based on the plant's species, and a directory of all plants supported by the website that users can chose new plants from to add to their calender.
+
+Road Map:
+
+11/3/24: submit MS1
+11/8/24: outline UI for each webpage
+11/12/24: outline route functions
+11/13/24: submit MS2
+11/16/24: complete route functions
+11/20/24: complete UI
+11/24/24: complete Authentication
+11/26/24: submit MS3
+11/30/24: prepare demo
+12/3/24: submit final project
