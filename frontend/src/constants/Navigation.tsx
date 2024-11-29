@@ -40,7 +40,7 @@ export const PATHS: {
     },
     {
         link: "/info",
-        label: "info",
+        label: "Info",
         element: <InfoPage />,
     },
 ];
