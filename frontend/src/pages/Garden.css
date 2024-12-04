@@ -1,13 +1,23 @@
 .Garden {
     width: 90%;
-    height: 90vh;
+    height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+body {
+    margin: 0;
+    height: 100vh; 
+    background-image: url('../../../imagesStore/SucculentBackground.jpg'); 
+    background-position: bottom right;
+    background-repeat: no-repeat; 
+    background-size: 600px 600px;
+}
+
 table {
     border: 2px solid forestgreen;
+    background-color: rgb(234, 248, 234);
     width: 900px;
     height: 200px;
 }

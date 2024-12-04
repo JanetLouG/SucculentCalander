@@ -3,9 +3,15 @@ import { useEffect, useState  } from 'react';
 import { Plant } from '../../../common/types/shared'; 
 import { Button } from "@blueprintjs/core"
 import { useNavigate } from 'react-router-dom';
-import Rose from '../../../imagesStore/rose.jfif';
-import cactus from '../../../imagesStore/cactus.jpg';
-import Rhipsalidopsis from '../../../imagesStore/Rhipsalidopsis.jfif';
+
+//Images
+import Aloe from '../../../imagesStore/Aloe.png';
+import Cactus from '../../../imagesStore/Cactus.jpg';
+import Crassula from '../../../imagesStore/Crassula.jpg';
+import Echeveria from '../../../imagesStore/Echeveria.jpg';
+import Haworthia from '../../../imagesStore/Haworthia.jpg';
+import Lithops from '../../../imagesStore/Lithops.png';
+import noImage from '../../../imagesStore/noImage.jpg';
 
 
 const InfoPage = () => {
@@ -15,18 +21,35 @@ const InfoPage = () => {
   const [plant, setPlant] = useState<Plant>();
   const navigate = useNavigate();
   let imageSrc = "";
-  if( selectedId === "Cactus")
+  if( selectedId === "Aloe")
   {
-     console.log("image be set to " + cactus)
-     imageSrc = cactus;
+     console.log("image set to " + Aloe)
+     imageSrc = Aloe;
   }
-  else if(selectedId === "Rhipsalidopsis" )
+  else if( selectedId === "Cactus")
+    {
+       console.log("image set to " + Cactus)
+       imageSrc = Cactus;
+    }
+  else if(selectedId === "Crassula" )
   {
-    imageSrc = Rhipsalidopsis;
+    imageSrc = Crassula;
   }
-  else if(selectedId === "Rose" )
+  else if(selectedId === "Echeveria" )
   {
-    imageSrc = Rose;
+    imageSrc = Echeveria;
+  }
+  else if(selectedId === "Haworthia" )
+  {
+    imageSrc = Haworthia;
+  }
+  else if(selectedId === "Lithops" )
+  {
+    imageSrc = Lithops;
+  }
+  else
+  {
+    imageSrc = noImage;
   }
 
 
@@ -59,25 +82,18 @@ const InfoPage = () => {
   console.log("selected: done " + plant?.name);
   
 
-  // if( plant?.name === "Rose")
-  //   imageSrc = "Rose"
-       
   console.log("image is " + imageSrc);
   return (
     <div className="info-page">
       {plant && (
         <center>
-          <h1>The detail of {plant.name}!</h1>
+          <h1>{plant.name}</h1>
           <div>
             <div className="PlantImage">
                 <img src={imageSrc} width="100" height="100" />
             </div>
-            <h3>Name: {plant.name}</h3> 
-            <h3>amount: {plant.amount}</h3> 
-            <p>Detail: {plant.detail}</p> 
-            <th>
-               <Button intent="primary" onClick={() => handleBackGarden()}>Home</Button>
-            </th>         
+            <h3>Watering: {plant.watering}</h3> 
+            <p>Details: {plant.detail}</p> 
           </div>
         </center>
       )}
@@ -85,5 +101,5 @@ const InfoPage = () => {
     </div>
   );
 };
-// test
+
 export default InfoPage;

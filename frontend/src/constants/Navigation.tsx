@@ -17,7 +17,6 @@ import InfoPage from "../pages/info"
  */
 export const BACKEND_BASE_PATH = 'https://fa23-lec9-demo-soln.fly.dev/api';
 
-
 export const PATHS: {
     link: string;
     label: string;

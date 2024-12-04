@@ -33,7 +33,7 @@ export default function MyCalendar() {
         defaultDate={new Date()}
         defaultView="month"
         events={eventsData}
-        style={{ height: "100vh" }}
+        style={{ height: "90vh" }}
         onSelectEvent={(event) => alert(event.title)}
         onSelectSlot={handleSelect}
       />

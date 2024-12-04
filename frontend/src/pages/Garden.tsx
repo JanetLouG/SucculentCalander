@@ -27,12 +27,12 @@ const plants =[
 ]
 
 const Garden = () => { 
-  const [plants, setPlants] = useState<Plant[]>([{name: "lily", amount: 10, price: 5, watering: "daily", detail: "N/A"}]);
+  const [plants, setPlants] = useState<Plant[]>([{name: "Cactus", amount: 1, type: "cactus", watering: "monthly", detail: "N/A"}]);
   const [plant, setPlant] = useState({name: "lily", amount: 10, watering: "daily" });
   const [selectedId, setSelectedId] = useState({});
   const [newName, setNewName] = useState("")
   const [newAmount, setNewAmount] = useState("")
-  const [newPrice, setNewPrice] = useState("")
+  const [newType, setNewType] = useState("")
   const [newWatering, setNewWatering] = useState("")
   const navigate = useNavigate();
   const [isInfo, setIsInfo] = useState(false);
@@ -43,7 +43,6 @@ const Garden = () => {
   useEffect(() => {
     console.log("Loading plants...");
 
-    /** Call getWeather and update state accordingly */
     getPlants().then((data) => {
         console.log(data);
         setPlants(data);
@@ -54,13 +53,13 @@ const Garden = () => {
     console.log('Button add clicked!');
     const newname = newName.trim()
     const newamount = Number(newAmount.trim())
-    const newprice = Number(newPrice.trim())
+    const newtype = newType.trim()
     const newwatering = newWatering.trim()
 
 
-    if(newname && newamount && newwatering)
+    if(newname && newamount && newwatering && newtype)
     {
-      const plant = { name: newname, amount: newamount, price: 10, watering: newwatering, detail: "N/A"}; 
+      const plant = { name: newname, amount: newamount, type: newtype, watering: newwatering, detail: "N/A"}; 
       console.log('Button add clicked! 100');
       setPlants([...plants, plant])
       fetch("http://localhost:8080/MyPlants", {
@@ -68,7 +67,7 @@ const Garden = () => {
         body: JSON.stringify({
           name: newname,
           amount: newamount,
-          price: newprice,
+          type: newtype,
           watering: newwatering,
           detail:  "N/A"
         }),
@@ -88,8 +87,7 @@ const Garden = () => {
 
   const handleInfo = (name: string) => {
     // Handle button click event
-    //const navigate = useNavigate();
-    const dataToShare = { id: name, age: 30 };
+    const dataToShare = { id: name };
     console.log('Button info clicked!' + name);
   
     setIsInfo(true);
@@ -132,9 +130,9 @@ const Garden = () => {
             <table>
                 <tr>
                     <th>Plant Name</th>
-                    <th>amount</th>
-                    <th>price</th>
-                    <th>Watering frequency</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                    <th>Watering Frequency</th>
                     <th></th>
                 </tr>
                    {plants.map((val, key) => {
@@ -142,7 +140,7 @@ const Garden = () => {
                         <tr key={key}>
                             <th>{val.name}</th>
                             <th>{val.amount}</th>
-                            <th>{val.price}</th>
+                            <th>{val.type}</th>
                             <th>{val.watering}</th>
                             <th>
                                 <Button intent="primary" onClick={() => handleInfo(val.name)}>Info</Button>                               
@@ -171,9 +169,9 @@ const Garden = () => {
                     </td>
                     <td>
                       <InputGroup
-                         value={newPrice}
-                         onChange={e => setNewPrice(e.target.value)}
-                         placeholder="Add price..."
+                         value={newType}
+                         onChange={e => setNewType(e.target.value)}
+                         placeholder="Add type..."
                       />
                     </td>
                     <td>

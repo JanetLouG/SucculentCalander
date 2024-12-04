@@ -76,7 +76,9 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
     const [active, setActive] = useState(links[0].link);
     const { classes, cx } = useStyles();
 
-    const items = links.map((link) => (
+    const headerLinks = [links[0], links[1], links[2]];
+
+    const items = headerLinks.map((link) => (
         <Link
             key={link.label}
             to={link.link}

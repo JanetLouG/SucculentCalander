@@ -40,17 +40,7 @@ app.use(bodyParser.json({ type: 'application/json' }))
 //app.use(require('connect').bodyParser());
 //app.use(express.bodyParser());
 
-type WeatherData = {
-    latitude: number;
-    longitude: number;
-    timezone: string;
-    timezone_abbreviation: string;
-    current: {
-        time: string;
-        interval: number;
-        precipitation: number;
-    };
-};
+
 app.get("/MyPlants/:id", async (request, response) =>{
     const name = request.params.id;
     console.log("GET /api/plant was called 11 " + {name});
@@ -86,7 +76,7 @@ app.get("/MyPlants", async (request, response) =>{
 app.post("/Myplants",  async (req, res) => {
     //const body = JSON.parse(req);
     console.log("POST /api/plant add be called 1 "+req.body.name + " " + req.body.amount + req.body.watering);
-    const plant = { name: req.body.name, amount: req.body.amount, price:req.body.price, watering: req.body.watering, detail: "N/A"};
+    const plant = { name: req.body.name, amount: req.body.amount, type:req.body.type, watering: req.body.watering, detail: "N/A"};
     console.log("POST /api/plant add be called 2 "+req.body.name + " " + req.body.amount);
     let exist = await findPlant(req.body.name);
     if(exist)
@@ -105,14 +95,6 @@ app.post("/Myplants",  async (req, res) => {
 app.delete("/MyPlants/:name", async (req, res) =>{
     console.log("delete /api/plants was called");
     try{
-        // const plant: Plant =       
-        //     { name: "Rose", amount: 22,   watering: "Every day" };
-        //   response.status(200).json(plant);
-        // const plants: Plant[] = [
-        //     { name: "Rose", amount: 22,   watering: "Every day" },
-        //     { name: "cactus", amount: 23, watering: "once a week" },
-        //     { name: "Rhipsalidopsis gaertneri", amount: 25, watering: "every day" },
-        // ];
          const id = req.body.id;
          console.log("delete /api/plants was called at " + id);
          await deletePlant(id);
@@ -123,26 +105,6 @@ app.delete("/MyPlants/:name", async (req, res) =>{
         res.status(500).json({ error: "Something went wrong" });
     }
 })
-
-
-
-
-app.get("/weather", async (req, res) => {
-    console.log("GET /api/weather was called");
-    try {
-        const response = await fetch(
-            "https://api.open-meteo.com/v1/forecast?latitude=40.7411&longitude=73.9897&current=precipitation&temperature_unit=fahrenheit&windspeed_unit=mph&timezone=America%2FNew_York&forecast_days=1"
-        );
-        const data = (await response.json()) as WeatherData;
-        const output: WeatherResponse = {
-            raining: data.current.precipitation > 0.5,
-        };
-        res.json(output);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Something went wrong" });
-    }
-});
 
 app.listen(port, hostname, () => {
     console.log("Listening");
