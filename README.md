@@ -1,6 +1,8 @@
 # full-stack
 
-Application that allows users to keep track of plants and watering schedules. To view current plants, visit the Garden page. To add new plants, visit the Shop page. To create watering schedules, visit the Calendar page. 
+Application that allows users to keep track of plants and watering schedules. To view current plants or create new plants, visit the Garden page. To add more plants, visit the Shop page. To create watering schedules, visit the Calendar page. To see plant info pages, click the Info button. 
+
+###
 
 Built using a "standard" yet modern full-stack TypeScript web-application template using React/Vite on the frontend and Express on the backend, bundled with Turborepo.
 
